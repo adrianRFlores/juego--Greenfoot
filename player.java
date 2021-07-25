@@ -9,7 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Player extends Actor
 {
     private int cooldown;
-    public int hp = 100;
+    int hp = 100;
+    
     public void act() 
     {
         
@@ -99,7 +100,12 @@ public class Player extends Actor
         if (hp <= 0)
         {
             getWorld().removeObject(this);
+            return;
         }
+    }
+    
+    public int getHP(){
+        return hp;
     }
     
 }

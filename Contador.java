@@ -6,12 +6,8 @@ public class Contador extends Actor
     private int timer = 0;
     public void act() 
     {
-        actualizar();
-        puntuacion();
-    }
-    
-    public void actualizar(){
         setImage(new GreenfootImage("Puntuación: " + contador, 30, Color.BLACK, Color.GREEN));
+        puntuacion();
     }
     
     private void puntuacion(){
@@ -20,5 +16,9 @@ public class Contador extends Actor
             contador++;
             timer = 0;
         }
+    }
+    
+    public void add(){
+        contador += 100;
     }
 }

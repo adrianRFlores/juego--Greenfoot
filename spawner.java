@@ -8,11 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class spawner extends Actor
 {
-    private int timer = 0, cooldown = 5;
+    private int timer = 0, cooldown = 10;
+    private Contador contador = new Contador();
+    
     public void act() 
     {
         timer++;
-        if(timer == 5){
+        if(timer == 10){
             cooldown--;
             timer = 0;
         }

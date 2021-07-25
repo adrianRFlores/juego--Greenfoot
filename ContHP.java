@@ -8,10 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ContHP extends Actor
 {
-    Player player = new Player();
+    
     public void act() 
     {
-        setImage(new GreenfootImage("HP: " + player.hp, 30, Color.GREEN, Color.BLACK));
+        MyWorld mundo = (MyWorld)getWorld();
+        Player player = mundo.getPlayer();
+        setImage(new GreenfootImage("HP: " + player.getHP(), 30, Color.GREEN, Color.BLACK));
         movimiento();
     }    
     

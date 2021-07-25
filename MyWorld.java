@@ -3,17 +3,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class MyWorld extends World
 {
     Contador contador = new Contador();
+    Player player = new Player();
     private int timer = 0, cooldown = 150;
 
     public MyWorld()
     {    
         super(1000, 900, 1); 
         prepare();
-    }
-
-    private void spawnMalevolos(){
-        Malvados malvado = new Malvados();
-        addObject(malvado, getRandX(), getRandY());
     }
 
     private int getRandX(){
@@ -26,6 +22,10 @@ public class MyWorld extends World
     public Contador getContador(){
         return contador;
     }
+    
+    public Player getPlayer(){
+        return player;
+    }
 
     /**
      * Prepare the world for the start of the program.
@@ -33,13 +33,11 @@ public class MyWorld extends World
      */
     private void prepare()
     {
-        Player player = new Player();
+        addObject(contador,895,847);
         addObject(player,500,450);
         spawner spawner = new spawner();
         addObject(spawner,999,0);
         ContHP contHP = new ContHP();
         addObject(contHP,499,492);
-        Contador contador = new Contador();
-        addObject(contador,895,847);
     }
 }

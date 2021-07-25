@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Malvados extends Actor
 {
     private int rotation, cooldown;
+    
     public void act() 
     {
         move(2);
@@ -50,9 +51,9 @@ public class Malvados extends Actor
         Actor bala = getOneIntersectingObject(Bullet.class);
         if (bala != null)
         {
-            MyWorld world = (MyWorld)getWorld();
-            Contador contador = world.getContador();
-            contador.contador += 100;
+            MyWorld mundo = (MyWorld)getWorld();
+            Contador contador = mundo.getContador();
+            contador.add();
             getWorld().removeObject(this);
         }
     }
