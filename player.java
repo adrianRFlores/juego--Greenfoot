@@ -6,10 +6,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class player extends Actor
+public class Player extends Actor
 {
     private int cooldown;
-    private int hp = 100;
+    public int hp = 100;
     public void act() 
     {
         
@@ -19,36 +19,74 @@ public class player extends Actor
             cooldown -= 1;
         }
         
-        if (Greenfoot.isKeyDown("a"))
+        if (Greenfoot.mouseClicked(null) && (cooldown == 0))
         {
-           turn(-3); 
-        }
-        if (Greenfoot.isKeyDown("d"))
-        {
-           turn(3); 
-        }
-        if (Greenfoot.isKeyDown("w"))
-        {
-           move(5); 
-        }
-        if (Greenfoot.isKeyDown("s"))
-        {
-           move(-5); 
-        }
-        
-        if (Greenfoot.isKeyDown("space") && (cooldown == 0))
-        {
-           getWorld().addObject(new bullet(), getX(), getY());
+           MouseInfo mouse = Greenfoot.getMouseInfo();
+           if (mouse == null) return;
+           int x = mouse.getX();
+           int y = mouse.getY();
+           Bullet bullet = new Bullet();
+           getWorld().addObject(bullet, getX(), getY());
+           bullet.turnTowards(x, y);
            cooldown = 15;
            
         }
+        
+        
+        
+        try{movimiento();}
+        catch(Exception e){}
+        /*Si el actor se moría mientras se mueve causaba un error, aunque creo que se soluciona poniendolo antes del checkCollision() jajaja
+          lamenteblamente, ya me tomé el tiempo de hacer esto y tengo demasiado orgullo como para moverlo. */
+        
     }
     
-    public void checkCollision()
+    private void movimiento(){
+        if (Greenfoot.isKeyDown("a") && (Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("s"))){
+            if (Greenfoot.isKeyDown("w")){
+                setLocation(getX()-3, getY()-3);
+            }
+            
+            else if (Greenfoot.isKeyDown("s")){
+                setLocation(getX()-3, getY()+3);
+            }
+        }
+        
+        else if (Greenfoot.isKeyDown("d") && (Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("s"))){
+            if (Greenfoot.isKeyDown("w")){
+                setLocation(getX()+3, getY()-3);
+            }
+            
+            else if (Greenfoot.isKeyDown("s")){
+                setLocation(getX()+3, getY()+3);
+            }
+        }
+        
+        else {
+            if (Greenfoot.isKeyDown("a"))
+            {
+                setLocation(getX()-4, getY()); 
+            }
+            if (Greenfoot.isKeyDown("d"))
+            {
+                setLocation(getX()+4, getY());
+            }
+            if (Greenfoot.isKeyDown("w"))
+            {
+                setLocation(getX(), getY()-4); 
+            }
+            if (Greenfoot.isKeyDown("s"))
+            {
+                setLocation(getX(), getY()+4); 
+            }
+        }
+    }
+    
+    private void checkCollision()
     {
         Actor obstaculo, malvado, balaM;
         obstaculo = getOneIntersectingObject(obstacle.class);
-        malvado = getOneIntersectingObject(malvados.class);
+        malvado = getOneIntersectingObject(Malvados.class);
         balaM = getOneIntersectingObject(bulletM.class);
         
         if (obstaculo != null && malvado != null)
@@ -63,4 +101,5 @@ public class player extends Actor
             getWorld().removeObject(this);
         }
     }
+    
 }

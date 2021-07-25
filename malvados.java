@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class malvados extends Actor
+public class Malvados extends Actor
 {
     private int rotation, cooldown;
     public void act() 
@@ -23,10 +23,20 @@ public class malvados extends Actor
         
         if ((Greenfoot.getRandomNumber(1000) <= 20)  && (cooldown == 0))
         {
-           getWorld().addObject(new bulletM(), getX(), getY());
+           bulletM b1 = new bulletM();
+           getWorld().addObject(b1, getX(), getY());
+           b1.turnTowards(getRandX(), getRandY());
            if (Greenfoot.getRandomNumber(1000) <= 20)
            {
-               getWorld().addObject(new bulletM(), getX(), getY());
+               bulletM b2 = new bulletM();
+               getWorld().addObject(b2, getX(), getY());
+               b2.turnTowards(getRandX(),getRandY());
+               if (Greenfoot.getRandomNumber(1000) <= 20)
+               {
+                   bulletM b3 = new bulletM();
+                   getWorld().addObject(b3, getX(), getY());
+                   b3.turnTowards(getRandX(), getRandY());
+                }
            }
            cooldown = 30;
         }
@@ -37,11 +47,21 @@ public class malvados extends Actor
     
     public void checkCollisionM()
     {
-        Actor bala = getOneIntersectingObject(bullet.class);
+        Actor bala = getOneIntersectingObject(Bullet.class);
         if (bala != null)
         {
+            MyWorld world = (MyWorld)getWorld();
+            Contador contador = world.getContador();
+            contador.contador += 100;
             getWorld().removeObject(this);
         }
     }
     
+    public int getRandX(){
+        return Greenfoot.getRandomNumber(1000);
+    }
+    
+    public int getRandY(){
+        return Greenfoot.getRandomNumber(900);
+    }
 }

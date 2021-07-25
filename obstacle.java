@@ -27,15 +27,12 @@ public class obstacle extends Actor
         }
         
         Actor bala, nave;
-        bala = getOneIntersectingObject(bullet.class);
-        nave = getOneIntersectingObject(player.class);
+        bala = getOneIntersectingObject(Bullet.class);
+        nave = getOneIntersectingObject(Player.class);
         if (bala != null)
         {
             getWorld().removeObject(bala);
         }
-        /*if (nave != null)
-        {
-            getWorld().removeObject(nave);
-        }*/
+        
     }    
 }
