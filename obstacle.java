@@ -1,11 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class obstacle here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+//obstáculo que bloquea balas y hace daño
 public class obstacle extends Actor
 {
     private int rotation;
@@ -13,6 +8,7 @@ public class obstacle extends Actor
     {
         setRotation(rotation);
         move(5);
+        //Hace que el actor se mueva lentamente en direcciones aleatorias
         if (Greenfoot.getRandomNumber(100) >= 50)
         {
             turn(Greenfoot.getRandomNumber(180));
@@ -26,9 +22,8 @@ public class obstacle extends Actor
             setRotation(0);
         }
         
-        Actor bala, nave;
-        bala = getOneIntersectingObject(Bullet.class);
-        nave = getOneIntersectingObject(Player.class);
+        Actor bala;
+        bala = getOneIntersectingObject(Bullet.class); //Revisa si colisiona con una bala para poder eliminarla
         if (bala != null)
         {
             getWorld().removeObject(bala);

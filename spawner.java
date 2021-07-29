@@ -1,18 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class spawner here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
+//Actor que maneja la frecuencia en la que aparecen nuevos enemigos
 public class spawner extends Actor
 {
     private int timer = 0, cooldown = 10;
-    private Contador contador = new Contador();
     
     public void act() 
     {
+        //Maneja un cooldown para definir los intervalos de tiempo en los que aparecen nuevos enemigos
         timer++;
         if(timer == 10){
             cooldown--;
@@ -24,11 +19,13 @@ public class spawner extends Actor
         }
     }    
     
+    //Método para agregar un enemigo al mundo
     private void spawnMalevolos(){
         Malvados malvado = new Malvados();
         getWorld().addObject(malvado, getRandX(), getRandY());
     }
-
+    
+    //Métodos para obtener posiciones aleatorias
     private int getRandX(){
         return Greenfoot.getRandomNumber(1000);
     }
