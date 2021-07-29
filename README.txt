@@ -1,3 +1,6 @@
 Lista de cambios:
-	- Ya funciona el contador de vida
-	- Ya se actualiza correctamente la puntuación
+	- Pantalla de inicio y fin
+	- Cambios segun feedback del usuario
+	- Cancion de fondo
+	- Documentación
+	- Imagenes propias para cada actor
